@@ -21,9 +21,10 @@
 n=int(input())
 i=1
 a=[] 
-while i*i<=n:
-    if n%i==0: a.append(i)
-    if n//i!=i: a.append(n//i) 
+while i<=n**0.5:
+    if n%i==0: 
+        a.append(i)
+        if i!=n//i: a.append(n//i) 
     i+=1
 a.sort() 
 for x in a: print(x, end=" ") 
