@@ -23,4 +23,5 @@ while n-2>0:
     a.append(b)
     n-=1
     i+=1
-for x in range(n1): print(a[x], end=" ") 
+for x in range(n1-1): print(a[x],", " sep="",end=" ") 
+print(a[-1])
