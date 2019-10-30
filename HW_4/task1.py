@@ -10,4 +10,7 @@ for i in range(n):
     a.append(b)
     b=0
 a.sort()
-for x in a: print("{:.g}".format(x))
+for x in a: 
+    k="{:g}".format(x)
+    if k.find('.')==-1: print(k)
+    else: print(k[:k.find('.')+5])
