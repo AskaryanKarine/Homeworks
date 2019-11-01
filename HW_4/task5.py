@@ -26,11 +26,12 @@
 # 2 1 2 2 4 1                                                       2
 
 n=int(input())
-s=input()
-a=[]
-for i in range(len(s)):
-    if s[i] not in a:
-        a.append(s[i])
-    else:
-        a.remove(s[i])
-print(a[0])
+s=input().split()
+a={}
+s1=s[::-1]
+for i in range(n):
+    if s[i] not in a.keys():
+        a.update({s[i]:s1.index(s[i])})
+s1=max(a.values())
+for v,k in a.items():
+    if k==s1: print(v)
