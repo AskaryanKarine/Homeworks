@@ -35,6 +35,7 @@ for i in range(n):
     a.append(b/m)
     b=0
 a.sort()
+a=a[::-1]
 for x in a: 
     k="{:.5f}".format(x)
     if k[-2]=='0' and k[-3]=='0' and k[-4]=='0' and k[-5]=='0': print(k[:k.find('.')])
