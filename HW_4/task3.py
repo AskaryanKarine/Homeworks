@@ -16,9 +16,9 @@
 # 21
 # 22                                                            32
 
-
-
 a=[]
 for i in range(3):
-    a.append(int(input()))
-print((sum(a)//2)+(sum(a)%2))
+    b=int(input())
+    if b%2!=0: a.append(b//2+1)
+    else: a.append(b//2)
+print(sum(a))
