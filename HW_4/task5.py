@@ -30,8 +30,10 @@ s=input().split()
 a={}
 s1=s[::-1]
 for i in range(n):
-    if s[i] not in a.keys():
-        a.update({s[i]:s1.index(s[i])})
+    for k in a.keys(): a[k]+=1
+    if s[i] not in a.keys(): a.update({s[i]:0})
+    for k in a.keys(): 
+        if k==s[i]: a[k]=0
 s1=max(a.values())
 for v,k in a.items():
     if k==s1: print(v)
