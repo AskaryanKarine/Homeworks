@@ -49,7 +49,3 @@ def cesar_sipher(message:str, step:int) -> str:
         else:
             res += message[i]
     return res
-
-s = input()
-s1 = int(input())
-print(cesar_sipher(s,s1))

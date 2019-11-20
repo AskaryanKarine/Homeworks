@@ -100,5 +100,3 @@ def b_day_book() -> list:
     r = reader(n)
     m = int(input())
     return printer(m, r)
-
-print(b_day_book())

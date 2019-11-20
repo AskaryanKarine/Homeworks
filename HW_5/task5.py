@@ -39,8 +39,8 @@ def find_der() ->str:
             if n == 2:
                 res += str(a[i]*i)+'x ' 
             else:
-                if a[i]>0: res += '+ '+str(a[i])+'x '
-                else: res += '- '+str(abs(a[i]))+'x '
+                if a[i]>0: res += '+ '+str(a[i]*i)+'x '
+                else: res += '- '+str(abs(a[i])*i)+'x '
         elif i == 3:
             res += str(a[i]*i)+'x^'+str(i-1)+' '
     return res
