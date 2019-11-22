@@ -40,7 +40,7 @@ map<string, int> counted_str(string& message)
     }
     
   for(auto it = sortedPaths.rbegin(); it!=sortedPaths.rend(); ++it){
-    cout << " " << (*it).second << " : " << (*it).first << endl;
+    cout << " " << (*it).second << ": " << (*it).first << endl;
     res.insert(pair<string, int>((*it).second, (*it).first));
   }
   return res;
