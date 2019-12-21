@@ -26,88 +26,42 @@ class Rational:
             print(z_err)
             self.num = 0
             self.den = 1
-        # формирование строки для вывода
-        if self.den<0: 
-            self.val = '-'+str(self.num)+' / '+str(abs(self.den))
-        else: 
-            self.val = str(self.num)+' / '+str(self.den)
-
+        self.val = str(abs(self.num))+' / '+str(abs(self.den))
+        if self.den*self.num<0: 
+            self.val='-'+self.val
     
-
-    def add(self, fraction):
+    def reduction(self):
         nod = lambda f_num,s_num: f_num if s_num == 0 else nod(s_num, f_num % s_num) #лямбда-функция для НОД
-        nok = lambda f_num,s_num: (f_num*s_num)/nod(f_num,s_num) # лямбда функция для НОК
         redn = lambda nums,dens: nums if nod(nums,dens)==1 else nums//nod(nums,dens) #лямба функция, которая сокращает числитель 
         redd =  lambda nums,dens: dens if nod(nums,dens)==1 else dens//nod(nums,dens) #лямбда функция, которая сокращает знаменатель
-        #приведение к общему знаменателю
-        k = int(nok(self.den, fraction.den)) 
-        self.num = int(self.num*(k//self.den)) 
-        second_num = int(fraction.num*(k//fraction.den))
-        self.num = self.num+second_num
-        # сокращение дроби
-        second_num = redn(self.num, k)
-        self.den = redd(self.num, k)
-        # формирование строки для вывода
-        if self.den<0: 
-            self.val = '-'+str(second_num)+' / '+str(abs(self.den))
-        else: 
-            self.val = str(second_num)+' / '+str(self.den)
-        
+        k = self.num
+        self.num = redn(k,self.den)
+        self.den = redd(k,self.den)
+        self.val = str(abs(self.num))+' / '+str(abs(self.den))
+        if self.den*self.num<0: 
+            self.val='-'+self.val
+
+
+    def add(self, fraction):
+        self.num = (self.num * fraction.den) + (fraction.num * self.den)
+        self.den = self.den * fraction.den
+        self.reduction()
 
     def sub(self, fraction):
-        nod = lambda f_num,s_num: f_num if s_num == 0 else nod(s_num, f_num % s_num) #лямбда функция нод
-        nok = lambda f_num,s_num: (f_num*s_num)/nod(f_num,s_num) #лямбда функция нок
-        redn = lambda nums,dens: nums if nod(nums,dens)==1 else nums//nod(nums,dens) # сокращение числителя
-        redd =  lambda nums,dens: dens if nod(nums,dens)==1 else dens//nod(nums,dens) # сокращение знаменателя
-        # приведение к общему знаменателю
-        k = int(nok(self.den, fraction.den))
-        self.num = int(self.num*(k//self.den)) 
-        second_num = int(fraction.num*(k//fraction.den))
-        self.num = self.num-second_num
-        # сокращение дроби
-        second_num = redn(self.num, k)
-        self.den = redd(self.num, k)
-        # формирование строки для вывода
-        if self.den<0: 
-            self.val = '-'+str(second_num)+' / '+str(abs(self.den))
-        else: 
-            self.val = str(second_num)+' / '+str(self.den)
-        
+        self.num = self.num*fraction.den - fraction.num*self.den
+        self.den = self.den*fraction.den
+        self.reduction()
+
 
     def mult(self, fraction):
-        nod = lambda f_num,s_num: f_num if s_num == 0 else nod(s_num, f_num % s_num) #лямбда функция нод
-        redn = lambda nums,dens: nums if nod(nums,dens)==1 else nums//nod(nums,dens) #сокращение числителя
-        redd =  lambda nums,dens: dens if nod(nums,dens)==1 else dens//nod(nums,dens) #сокращение знаменателя
-        # умножение дроби
         self.num = self.num * fraction.num
         self.den = self.den * fraction.den
-        # сокращение дроби
-        second_num = redn(self.num,self.den)
-        self.den = redd(self.num, self.den)
-        # формирование строки для вывода
-        if self.den<0: 
-            self.val = '-'+str(second_num)+' / '+str(abs(self.den))
-        else: 
-            self.val = str(second_num)+' / '+str(self.den)
-
+        self.reduction()
 
     def div(self,fraction):
-        nod = lambda f_num,s_num: f_num if s_num == 0 else nod(s_num, f_num % s_num) #лямбда функция нод
-        redn = lambda nums,dens: nums if nod(nums,dens)==1 else nums//nod(nums,dens) #сокращение числителя
-        redd =  lambda nums,dens: dens if nod(nums,dens)==1 else dens//nod(nums,dens) #сокращение знаменателя
-        # деление доби
         self.num = self.num * fraction.den
         self.den = self.den * fraction.num
-        # сокращение дроби
-        second_num = redn(self.num,self.den)
-        self.den = redd(self.num, self.den)
-        # фомирование строки для вывода
-        if self.den<0: 
-            self.val = '-'+str(second_num)+' / '+str(abs(self.den))
-        else: 
-            self.val = str(second_num)+' / '+str(self.den)
-
+        self.reduction()
 
     def get(self):
-        # вывод ранее сформированной строки
         print(self.val)
